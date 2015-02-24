@@ -13,7 +13,7 @@ students = [
     'Charles Lee',
 ]
 
-def get_random_groups(students_list, group_size=3):
+def get_random_groups(students_list, group_size=2):
     def _get_random_student(students_copy):
         return students_copy.pop(random.randint(0, len(students_copy)-1))
 

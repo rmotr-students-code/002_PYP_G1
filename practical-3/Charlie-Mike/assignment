@@ -1,0 +1,42 @@
+# Bank system
+Create a class hierarchy for a bank system. SavingsAccount and CurrentAccount class must
+inherit from Account abstract class. Both classes must implement needed attributes and methods
+as required by the following usage sample:
+ 
+ 
+ 
+>>> sa = SavingAccount(number="123", initial_money=0)
+>>> sa.deposit(1000)
+>>> sa.add_interest(yearly_interest_rate=0.1, months=12)
+>>> sa.show_balance()
+1100
+>>> sa.show_transaction_history()
+Opened account number 123
+Desposited $1000
+Added $100 in concept of interests
+Shown balance
+Asked for transaction history
+ 
+ 
+ 
+>>> ca = CurrentAccount(number="123", initial_money=0, overdraft_limit=1000)
+>>> ca.deposit(5000)
+>>> ca.withdraw(5500)
+5500
+>>> ca.show_balance()
+-500
+>>> ca.withdraw(1000)
+TransactionError: Overdraft limit exceeded
+ 
+ 
+ 
+>>> sa = SavingAccount(number="123", initial_money=0)
+>>> ca = CurrentAccount(number="123", initial_money=0, overdraft_limit=1000)
+>>> sa.deposit(1000)
+>>> sa.transfer(amount=200, destination_account=ca)
+>>> sa.show_balance()
+800
+>>> ca.show_balance()
+200
+>>> sa.transfer(amount=1000, destination_account=ca)
+TransactionError: You don't have enougth money in you account 

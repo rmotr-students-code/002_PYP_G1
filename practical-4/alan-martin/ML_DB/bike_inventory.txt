@@ -1,0 +1,4 @@
+   id      |      make     |     model     |      year     |      cost     |    
+   1       |    Devinci    |     wilson    |      2014     |      3500     |    
+   2       |     Giant     |     Carbon    |      2015     |      5000     |    
+   3       |     Norco     |    Bigfoot    |      2015     |      500      |    

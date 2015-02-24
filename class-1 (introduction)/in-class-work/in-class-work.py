@@ -8,6 +8,6 @@ d = {
 
 for key, value in d.items():
     #value = d[key]
-    print(key)
+    print key, value
     
 #that just answered my question ;) I'm on your brain :D
