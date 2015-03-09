@@ -47,7 +47,13 @@ def first_letter_count(file_name):
 #4) Sort the file by name in an ascendent way.
 def ascend_sort(file_name):
     
-    pass
-    
+    with open(file_name, 'r') as names:
+        name_list = []
+        for lines in names:
+            tup = ("{}").format(lines)
+            name_list.append(tup)
+        return name_list
 
+
+print ascend_sort('names.txt')
 #5) Update all the names containing the string "po" to lowercase.

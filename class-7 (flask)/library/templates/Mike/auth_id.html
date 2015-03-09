@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+
+{% extends "/Mike/common.html" %}
+{% block content %}
+    <ul>   
+        {% for a in lst_auth %}
+        <li> {{a['id']}}: {{a['name']}} </li>
+        {% endfor %}
+    </ul>
+    
+   <h1> You're requesting the author with ID {{auth_id}} </h1>
+    <ol> 
+        {% for a in lst_auth %}
+        <li> {{ a }} </li>
+        {% endfor %}    
+    </ol>
+{% endblock %}
+
+</html>

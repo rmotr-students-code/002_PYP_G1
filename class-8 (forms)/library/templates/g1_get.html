@@ -1,0 +1,24 @@
+{% extends "g1_base.html" %}
+{%block content%}
+
+<form method="POST"> 
+    <!-- removed 'Add New Book' because the title automatically appears already -->
+    
+    <h1 id="content-head">{{title}}</h1>
+    <b>Author:</b>
+    <br>
+    <input type="text" name="author_id">
+    <br>
+    <b>Book Title:</b>
+    <br>
+    <input type="text" size=30 name="book_title">
+    <br>
+    <b>ISBN:</b>
+    <br>
+    <input type="text" name="isbn">
+    <br>
+    <br>
+    <input type="submit" value="Add Book">
+</form>
+
+{%endblock%}

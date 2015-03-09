@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html>
+    
+{% extends "/Mike/common.html" %}
+{% block content %}
+    <h1> {{lst_auth[0]['name']}}'s Information is Shown Below! </h1>
+    <p> </p>
+    <ul>   
+        <li> {{lst_auth[0]['id']}}: {{lst_auth[0]['name']}} </li>
+    </ul>
+{% endblock %}
+
+</html>

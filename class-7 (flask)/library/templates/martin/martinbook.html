@@ -1,0 +1,13 @@
+<!-- templates/martinbooks.html -->
+<html>
+    <head>
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <ul>
+            {% for a in authors %}
+                <li> {{a['name']}} </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

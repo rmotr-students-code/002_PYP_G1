@@ -68,7 +68,7 @@ class Database(object):
     
     """
     Updates the db with new values.
-    if multiple is flase, only the first value found is updated. 
+    if multiple is false, only the first value found is updated. 
     """
     
     def update(self,dic1, dict2, multiple=False):

@@ -1,0 +1,38 @@
+<!--SABOTAGE-->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+       <link type="text/css" rel="stylesheet" href="/static/g1_style.css"/>
+
+       {%if pagetitle%}
+        <title>The RMOTR Library</title>
+        {%else%}
+        <title>The RMOTR Library</title>
+        {%endif%}
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+              <img src="http://u3asitec.org.uk/sites/i/isle-of-wight/book-logo-02.jpg" height="167px" width="167px" id="logo"/> 
+              {%if pagetitle%}
+              <h1 id="title"><font face="Georgia" size="25"> {{pagetitle}}</font></h1>
+            {%else%}
+            <h1 id="title"><font face="Georgia" size="25">The RMOTR Library</font></h1>
+            {%endif%}
+            </div><!-- end of header -->
+            <div id="menu">
+            <h2><br><center>Navigate</center></h2>
+            <ul>
+                {% for link in links %}
+                <li><a href="{{link.address}}"><b>{{link.name}}</b></a></li><br>
+                {%endfor%}
+            </ul>
+        </div><!-- end of menu -->
+        <div id="content">
+            {%block content%}{%endblock%}
+        </div><!--end of content -->
+        </div><!-- end of wrapper -->
+     </body>
+    
+</html> 

@@ -1,0 +1,23 @@
+<!-- templates/martinbooks.html -->
+{% extends "g1_base.html" %}
+{%block content%}
+<!-- sdo I need to change my python code because Im passing a title to the html file??? -->
+<!-- no, i dont believe so. -->
+        <h1 id="authors-list">{{title}}</h1></h1>
+        
+        <table style="width:100%">
+            <tr>
+                <th>ID#</th>
+                <th>Book Name</th>
+                <th>Author</th>
+            </tr>
+            {% for row in book_list %}
+            <tr>
+                <td>{{row['id']}}</td>
+                <td>{{row['book_name']}}</td>
+                <td>{{row['author']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+     
+{% endblock %}

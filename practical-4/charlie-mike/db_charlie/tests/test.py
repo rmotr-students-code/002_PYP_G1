@@ -37,4 +37,4 @@ if __name__ == '__main__':
     # with open(log_file, "a") as f:
     #     runner = unittest.TextTestRunner(f)
     #     unittest.main(testRunner=runner, verbosity=2)
-    unittest.main(verbosity=2)
+    unittest.main()

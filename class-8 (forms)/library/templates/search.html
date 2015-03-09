@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Search</title>
+    </head>
+    <body>
+        <form method='POST'>
+            Search by author or keyword.<br>
+            <br>
+            Author: <br>
+            <input type='text' name='author' value="Search authors...">
+            <br>
+            Keyword: <br>
+            <input type='text' name='keyword' value="Search books by keyword...">
+            <br>
+            <input type='submit' value='Search'>
+        </form>
+        
+        <p>Results</p>
+        
+        <ul>
+            {% for result in results %}
+            <li>{{result}}</li>
+            {% endfor %}
+        </ul>
+        
+    </body>
+</html>

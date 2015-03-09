@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <ul>
+            {% for author in authors %}
+                <li> {{author['id']}} - {{author['name']}} </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <table style="width:50%;">
+            <tr>
+                <th align="left"><b>Author</b></th>
+                <th align="left"><b>Book Title</b></th>
+                <th align="left"><b>ISBN</b></th>
+            </tr>
+            {% for author,books in entries.items() %}
+            <tr>
+                <td style="vertical-align:top">{{author}}</td>
+                    <td>
+                        <ol style="list-style-type:none; padding:0">
+                            {% for book in books %}
+                            <li>{{book[0]}}</li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                    <td>
+                        <ol style="list-style-type:none; padding:0">
+                            {% for book in books %}
+                            <li>{{book[1]}}</li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+    <p>How I felt when I figured it out how to finally read/write SQL commands...</p>
+    <img src="http://cdn.meme.am/instances/500x/57260235.jpg" alt="It's beautiful">
+    </body>
+</html>

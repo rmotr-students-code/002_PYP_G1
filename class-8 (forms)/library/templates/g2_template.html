@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <table style="width:50%">
+            <tr>
+                <td><b>Book ID</b></td>
+                <td><b>Book Title</b></td>
+                <td><b>ISBN</b></td>
+            </tr>
+            {% for book in book_list_data %}
+            <tr>
+                <td>{{book[0]}}</td>
+                <td>{{book[2]}}</td>
+                <td>{{book[3]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>
+        <!--<ul>-->
+        <!--    {% for book in book_list_data %}-->
+        <!--        <li> {{book['book_id']}} - {{book['title']}} </li>-->
+        <!--    {% endfor %}-->
+        <!--</ul>-->                   

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        {%if title%}                 <!-- title = "This is a book blog" -->
+        <title> This is the {{ title }} blog</title> <!-- render_to_template('alanbase.html'title=title) -->
+        {%else%}
+        <title> This is the book blog</title>
+        {%endif%}
+        
+    </head>
+    <body> 
+        <div>
+            {%if title%}
+            <h1>The {{title}} blog!</h1>
+            {%else%}
+            <h1>The book blog!</h1>
+            {%endif%}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXuiRBKlq5zCj0SBdpfz85eEMagmGB-5GlF7kDk53hUdX6_3JHbA">
+        </div>
+        <div>
+            {%block content%}{%endblock%}
+        </div>
+    </body>
+</html>
