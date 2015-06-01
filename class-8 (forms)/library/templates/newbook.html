@@ -9,8 +9,15 @@
             Title: <br>
             <input type='text' name='book_title' value="Enter the book title...">
             <br>
-            Author: <br>
-            <input type='integer' name='author_id' value="Enter the author id...">
+            Author: <br> 
+                <select name='auth_name'>
+                  {% for author in authors %}
+                  <option value={{author}}>{{author[0]}}</option>
+                  <!--<option value="Mark Twain">Mark Twain</option>-->
+                  <!--<option value="Arthur Conan Doyle">Arthur Conan Doyle</option>-->
+                  <!--<option value="Jorge Luis Borges">Jorge Luis Borges</option>-->
+                  {% endfor %}
+                </select>
             <br>
             ISBN: <br>
             <input type='text' name='isbn_value' value="Enter the isbn...">

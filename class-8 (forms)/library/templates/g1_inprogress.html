@@ -1,5 +1,30 @@
 <!DOCTYPE HTML>
-<!-- Author select
+<!-- 
+@app.route('/g1/addbook', methods=['GET','POST'])
+def addbook():
+    links = global_links
+    authors=global_authors
+    title = 'Enter in a new book!'
+    if request.method == "GET":
+        #trying to insert the drop down list of authors and have the selection refer to a author id for book table input.
+        #db = sqlite3.connect('example.db')
+        #cursor = db.execute('SELECT id, name FROM author;')
+        #author_list = cursor.fetchall()
+        return render_template('g1_get.html', title=title, links=links, authors=authors)
+    elif request.method == 'POST':
+        author_id = request.form['author_id']
+        book_title = request.form['book_title']
+        isbn = request.form['isbn']
+        db = sqlite3.connect('example.db')
+        db.execute('INSERT INTO book (author_id, title, isbn) VALUES(?,?,?)',(author_id, book_title, isbn))
+        db.commit()
+        #flash('New book added!') #should flash this message when a book is entered
+        return redirect('/g1/books')
+
+
+
+
+Author select
 <h2><center>Select an author</center></h2>
             <center><select>
                 {%for author in authors%}

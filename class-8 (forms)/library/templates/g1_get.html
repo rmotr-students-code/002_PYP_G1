@@ -1,13 +1,16 @@
 {% extends "g1_base.html" %}
 {%block content%}
 
+
 <form method="POST"> 
-    <!-- removed 'Add New Book' because the title automatically appears already -->
-    
     <h1 id="content-head">{{title}}</h1>
     <b>Author:</b>
     <br>
-    <input type="text" name="author_id">
+    <select name="author_name">
+        {%for author in authors%}
+        <option value={{author}}>{{author}}</option>
+        {%endfor%}
+        </select> 
     <br>
     <b>Book Title:</b>
     <br>
@@ -20,5 +23,7 @@
     <br>
     <input type="submit" value="Add Book">
 </form>
+
+<p> Or if you don't see the author you were looking for, <a href="https://002-pyp-g1-martinzugnoni.c9.io/g1/newauthor">add them to our list!</a></p>
 
 {%endblock%}

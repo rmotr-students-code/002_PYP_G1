@@ -1,0 +1,20 @@
+{% extends "g1_base.html" %}
+{% block content %}
+
+<h1 id="new_author">Enter a new author:</h1><br>
+
+<form method="POST">
+    <b>Author name:</b>
+    <br>
+    <input type="text" name="author_name">
+    <br>
+    <b>Country_id</b>
+    <br>
+    <input type="number" name="country_id" min="1" max="100">
+    <br><br>
+    <input type="submit" value="Submit">
+    
+    
+</form>
+
+{% endblock %}

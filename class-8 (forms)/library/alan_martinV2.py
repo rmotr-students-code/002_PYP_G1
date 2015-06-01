@@ -7,7 +7,9 @@ global_links = [{'name':'Books',
               {'name':'Books and Authors',
               'address':'https://002-pyp-g1-martinzugnoni.c9.io/g1/books_authors'},
               {'name':'Add a Book',
-              'address':'https://002-pyp-g1-martinzugnoni.c9.io/g1/addbook'}]
+              'address':'https://002-pyp-g1-martinzugnoni.c9.io/g1/addbook'},
+              {'name':'Add an Author',
+              'address':'https://002-pyp-g1-martinzugnoni.c9.io/g1/newauthor'}]
 
 #global author list for easy access across functions
 gdb = sqlite3.connect('example.db')
@@ -29,23 +31,23 @@ def g1_this_is_a_test():
 @app.route('/g1/books')
 def g1_booklist():
     db = sqlite3.connect('example.db')
-    query="""SELECT name, author_id, title, isbn FROM author, book
-            WHERE book.author_id = author.id;
+    query="""SELECT author.name, book.title, 
+            book.isbn FROM author LEFT OUTER JOIN book
+            ON book.author_id = author.id;
             """
     cursor = db.execute(query)
     links = global_links
     authors=global_authors
     book_list = {}  #
-    title = "Book List"
+    page_title = "Book List"
     for row in cursor.fetchall():
-        author, author_id, title, isbn = row 
+        author, title, isbn = row 
         if author not in book_list:
-            book_list[author] = {'author_id':author_id,
-                                 'books':[(title, isbn)]}
+            book_list[author] = [(title, isbn)]
         else:
-            book_list[author]['books'].append((title, isbn))
+            book_list[author].append((title, isbn))
         
-    return render_template('g1_booklist.html', title=title, 
+    return render_template('g1_booklist.html', page_title=page_title, 
                                               book_list=book_list, 
                                               links=links,
                                               authors=authors)
@@ -88,26 +90,56 @@ def g1_AuthorList():
                                 
 @app.route('/g1/addbook', methods=['GET','POST'])
 def addbook():
+    db = sqlite3.connect('example.db')
+    grab_authors = db.execute('SELECT name, id FROM author;')
+    author_ref = [row for row in grab_authors.fetchall()] #(authorname, id#)
     links = global_links
-    authors=global_authors
+    authors= sorted([row[0] for row in author_ref])
     title = 'Enter in a new book!'
     if request.method == "GET":
-        #trying to insert the drop down list of authors and have the selection refer to a author id for book table input.
-        #db = sqlite3.connect('example.db')
-        #cursor = db.execute('SELECT id, name FROM author;')
-        #author_list = cursor.fetchall()
-        return render_template('g1_get.html', title=title, links=links, authors=authors)
+        return render_template('g1_get.html', title=title, 
+                                              links=links, 
+                                              authors=authors, 
+                                              author_ref=author_ref)
     elif request.method == 'POST':
-        author_id = request.form['author_id']
+        
+        author_name = request.form['author_name']
         book_title = request.form['book_title']
         isbn = request.form['isbn']
+        author_id = [item[1] for item in author_ref if author_name in item[0]]#KeyError: u'Mark' ?????
+        
         db = sqlite3.connect('example.db')
-        db.execute('INSERT INTO book (author_id, title, isbn) VALUES(?,?,?)',(author_id, book_title, isbn))
+        db.execute('INSERT INTO book (author_id, title, isbn) VALUES(?,?,?)',(author_id[0], book_title, isbn))
         db.commit()
         #flash('New book added!') #should flash this message when a book is entered
         return redirect('/g1/books')
+
         
-#I going to use author_is instead of author
+@app.route('/g1/newauthor', methods=['GET','POST'])
+def new_author():
+    links = global_links
+    db = sqlite3.connect('example.db')
+    grab_authors = db.execute('SELECT name FROM author;')
+    author_ref = [row for row in grab_authors.fetchall()]
+    if request.method == 'GET':
+        return render_template('g1_newauthor.html', links=links)
+    
+    elif request.method == 'POST':
+        author_name = request.form['author_name']
+        country_id = request.form['country_id']
+        
+        if author_name in author_ref:
+            return redirect('/g1/newauthor') # Change this to show "Author already in DB"
+        else:
+            db.execute('INSERT INTO author (name, country_id) VALUES(?,?)', (author_name, country_id))
+            db.commit()
+            return redirect('g1/addbook')
+    
+################################################################################################    
+    
+
+        
+
 
 """
 INSERT INTO author (id, country_id, name) VALUES (4, 3, 'Jorge Luis Borges');

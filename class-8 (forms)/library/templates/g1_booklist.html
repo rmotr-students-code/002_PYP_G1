@@ -4,39 +4,34 @@
 <!-- sdo I need to change my python code because Im passing a title to the html file??? -->
 <!-- no, i dont believe so. -->
         
-        <h1 id="book-list">{{title}}</h1>
-        {% for author, details in book_list.items() %}
-        <h1> {{author}}</h1>
-        <h2>ID#: {{details.author_id}}</h2><br>
-        <h2> Books:</h2>
+        <h1 id="book-list">{{author}}</h1>
         <table style="width:100%">
             <tr>
+                <th>Author</th>
                 <th>Title</th>
                 <th>ISBN #</th>
             </tr>
+            {% for author, books in book_list.items() %}
             <tr>
-                <td>{{details.books[0]}}</td>
-                <td>{{details.books[1]}}</td>
+                <td><b>{{author}}</b></td>
+                <td>
+                    <ul>
+                        {%for book in books%}
+                        <li>{{book[0]}}</li>
+                        {%endfor%}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {%for book in books%}
+                        <li>{{book[1]}}</li>
+                        {%endfor%}
+                    </ul>
+                </td>
             </tr>
-            {% endfor %}
+            {%endfor%}
         </table>
         
         
         
-        
-    <!--    <table style="width:100%">
-            <tr>
-                <th>Author ID</th>
-                <th>Book Name</th>
-            </tr>
-            {% for row in book_list %}
-            <tr>
-                <td>{{row['id']}}</td>
-                <td>{{row['book_name']}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-       
-       -->
-      
 {% endblock %}
